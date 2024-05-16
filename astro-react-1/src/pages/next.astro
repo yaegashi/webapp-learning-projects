@@ -1,0 +1,11 @@
+---
+import NextLayout from "../layouts/NextLayout.astro";
+import NextCounter from "../components/NextCounter";
+const hello = "Astro+React+NextUI+TailwindCSS";
+---
+
+<NextLayout title={hello}>
+	<NextCounter initialCount={0} client:visible>
+		<p class="mx-auto">Hello, {hello}!</p>
+	</NextCounter>
+</NextLayout>
