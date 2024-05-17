@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "concurrently \"astro dev\" \"cd json-server && json-server -w -r routes.json db.json\"",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
@@ -17,7 +17,9 @@
     "@types/react": "^18.3.2",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.8.3",
+    "concurrently": "^8.2.2",
     "framer-motion": "^11.2.0",
+    "json-server": "^0.17.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tailwindcss": "^3.4.3",
