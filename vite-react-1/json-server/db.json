@@ -6,7 +6,7 @@
         "month": 1,
         "day": 1
       },
-      "id": "new_years_day",
+      "id": "2024-01-01",
       "image": "/assets/2024-01-01.jpg",
       "meaning": "年のはじめを祝う",
       "name": "元日",
@@ -18,7 +18,7 @@
         "month": 1,
         "day": 8
       },
-      "id": "coming_of_age_day",
+      "id": "2024-01-08",
       "image": "/assets/2024-01-08.jpg",
       "meaning": "おとなになったことを自覚し、みずから生き抜こうとする青年を祝い励ます",
       "name": "成人の日",
@@ -30,7 +30,7 @@
         "month": 2,
         "day": 11
       },
-      "id": "national_foundation_day",
+      "id": "2024-02-11",
       "image": "/assets/2024-02-11.jpg",
       "meaning": "建国をしのび、国を愛する心を養う",
       "name": "建国記念の日",
@@ -42,7 +42,7 @@
         "month": 2,
         "day": 23
       },
-      "id": "emperors_birthday",
+      "id": "2024-02-23",
       "image": "/assets/2024-02-23.jpg",
       "meaning": "天皇の誕生を祝う",
       "name": "天皇誕生日",
@@ -54,7 +54,7 @@
         "month": 3,
         "day": 20
       },
-      "id": "vernal_equinox_day",
+      "id": "2024-03-20",
       "image": "/assets/2024-03-20.jpg",
       "meaning": "自然をたたえ、生物をいつくしむ",
       "name": "春分の日",
@@ -66,7 +66,7 @@
         "month": 4,
         "day": 29
       },
-      "id": "showa_day",
+      "id": "2024-04-29",
       "image": "/assets/2024-04-29.jpg",
       "meaning": "激動の日々を経て、復興を遂げた昭和の時代を振り返り、将来の日本の発展を願う",
       "name": "昭和の日",
@@ -78,7 +78,7 @@
         "month": 5,
         "day": 3
       },
-      "id": "constitution_memorial_day",
+      "id": "2024-05-03",
       "image": "/assets/2024-05-03.jpg",
       "meaning": "日本国憲法の施行を記念し、国の成長を期する",
       "name": "憲法記念日",
@@ -90,7 +90,7 @@
         "month": 5,
         "day": 4
       },
-      "id": "greenery_day",
+      "id": "2024-05-04",
       "image": "/assets/2024-05-04.jpg",
       "meaning": "自然に親しむとともにその恩恵に感謝し、豊かな心をはぐくむ",
       "name": "みどりの日",
@@ -102,7 +102,7 @@
         "month": 5,
         "day": 5
       },
-      "id": "childrens_day",
+      "id": "2024-05-05",
       "image": "/assets/2024-05-05.jpg",
       "meaning": "こどもの人格を重んじ、こどもの幸福をはかるとともに、母に感謝する",
       "name": "こどもの日",
@@ -114,7 +114,7 @@
         "month": 7,
         "day": 15
       },
-      "id": "marine_day",
+      "id": "2024-07-15",
       "image": "/assets/2024-07-15.jpg",
       "meaning": "海の恩恵に感謝するとともに、海洋国日本の繁栄を願う",
       "name": "海の日",
@@ -126,7 +126,7 @@
         "month": 8,
         "day": 11
       },
-      "id": "mountain_day",
+      "id": "2024-08-11",
       "image": "/assets/2024-08-11.jpg",
       "meaning": "山に親しむ機会を得て、山の恩恵に感謝する",
       "name": "山の日",
@@ -138,7 +138,7 @@
         "month": 9,
         "day": 16
       },
-      "id": "respect_for_the_aged_day",
+      "id": "2024-09-16",
       "image": "/assets/2024-09-16.jpg",
       "meaning": "多年にわたり社会につくしてきた老人を敬愛し、長寿を祝う",
       "name": "敬老の日",
@@ -150,7 +150,7 @@
         "month": 9,
         "day": 22
       },
-      "id": "autumnal_equinox_day",
+      "id": "2024-09-22",
       "image": "/assets/2024-09-22.jpg",
       "meaning": "祖先を敬い、なくなった人をしのぶ",
       "name": "秋分の日",
@@ -162,7 +162,7 @@
         "month": 10,
         "day": 14
       },
-      "id": "health_and_sports_day",
+      "id": "2024-10-14",
       "image": "/assets/2024-10-14.jpg",
       "meaning": "スポーツにしたしみ、健康な心身をつちかう",
       "name": "スポーツの日",
@@ -174,7 +174,7 @@
         "month": 11,
         "day": 3
       },
-      "id": "culture_day",
+      "id": "2024-11-03",
       "image": "/assets/2024-11-03.jpg",
       "meaning": "自由と平和を愛し、文化をすすめる",
       "name": "文化の日",
@@ -186,7 +186,7 @@
         "month": 11,
         "day": 23
       },
-      "id": "labor_thanksgiving_day",
+      "id": "2024-11-23",
       "image": "/assets/2024-11-23.jpg",
       "meaning": "勤労をたっとび、生産を祝い、国民たがいに感謝しあう",
       "name": "勤労感謝の日",
