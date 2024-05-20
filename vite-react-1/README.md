@@ -11,6 +11,8 @@ npm start
 
 開発サーバが起動したらWebブラウザで http://localhost:5173 を開くとアプリにアクセスできます。
 
+![](doc/assets/ss1.png)
+
 ## Webアプリについて
 
 このWebアプリは次のコマンドで作成した React + TypeScript アプリから出発して Azure OpenAI Studio における GPT-4o モデルとの対話により開発しました。
