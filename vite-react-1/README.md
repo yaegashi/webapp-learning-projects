@@ -20,10 +20,10 @@ npm create vite@latest vite-react-1 -- --template react-swc-ts
 ```
 
 WebアプリがアクセスするAPIサーバとして [json-server](https://github.com/typicode/json-server) 0.17.4 を使用しています。
-[json-serverフォルダ](json-server)にAPIサーバが扱うデータベースやアセットファイルが格納されています。
+[json-serverフォルダ](json-server)にAPIサーバが扱うデータベースJSONファイルや画像ファイルが格納されています。
 
 WebアプリのUIコンポーネントとして [Material UI](https://mui.com) を使用しています。
-新しいデータベースへの対応し外観を更新するには次の場所を変更してみてください。
+新しいデータベースに対応し、外観を更新するには、次の場所を変更してみてください。
 - [src/typees.d.ts](src/types.d.ts) ... APIで取得できるアイテムの型定義 `DataType`
 - [src/DataListItem.tsx](src/DataListItem.tsx) ... データ一覧ページのアイテム表示コンポーネント `DataListItem`
 - [src/DataDetailItem.tsx](src/DataDetailItem.tsx) ... データ詳細ページのアイテム表示コンポーネント `DataDetailItem`
