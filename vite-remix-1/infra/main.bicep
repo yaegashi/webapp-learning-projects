@@ -16,6 +16,11 @@ param viteRemix1Definition object
 @description('Id of the user or app to assign application roles')
 param principalId string
 
+param msTenantId string
+param msClientId string
+@secure()
+param msClientSecret string
+
 // Tags that should be applied to all resources.
 // 
 // Note that 'azd-service-name' tags should be applied separately to service host resources.
@@ -89,6 +94,16 @@ module appsEnv './shared/apps-env.bicep' = {
   scope: rg
 }
 
+module storageAccount './core/storage/storage-account.bicep' = {
+  name: 'storage-account'
+  scope: rg
+  params: {
+    location: location
+    tags: tags
+    name: '${abbrs.storageStorageAccounts}${resourceToken}'
+  }
+}
+
 module viteRemix1 './app/vite-remix-1.bicep' = {
   name: 'vite-remix-1'
   params: {
@@ -99,6 +114,11 @@ module viteRemix1 './app/vite-remix-1.bicep' = {
     applicationInsightsName: monitoring.outputs.applicationInsightsName
     containerAppsEnvironmentName: appsEnv.outputs.name
     containerRegistryName: registry.outputs.name
+    keyVaultName: keyVault.outputs.name
+    storageAccountName: storageAccount.outputs.name
+    msTenantId: msTenantId
+    msClientId: msClientId
+    msClientSecret: msClientSecret
     exists: viteRemix1Exists
     appDefinition: viteRemix1Definition
   }

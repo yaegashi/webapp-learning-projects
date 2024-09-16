@@ -10,6 +10,13 @@ param exists bool
 @secure()
 param appDefinition object
 
+param keyVaultName string
+param storageAccountName string
+param msTenantId string = ''
+param msClientId string = ''
+@secure()
+param msClientSecret string = ''
+
 var appSettingsArray = filter(array(appDefinition.settings), i => i.name != '')
 var secrets = map(filter(appSettingsArray, i => i.?secret != null), i => {
   name: i.name
@@ -57,7 +64,39 @@ module fetchLatestImage '../modules/fetch-container-image.bicep' = {
   }
 }
 
-resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
+resource keyvault 'Microsoft.KeyVault/vaults@2023-07-01' existing = {
+  name: keyVaultName
+}
+
+module keyvaultAccess '../core/security/keyvault-access.bicep' = {
+  name: '${name}-keyvault-access'
+  params: {
+    keyVaultName: keyvault.name
+    principalId: identity.properties.principalId
+  }
+}
+
+resource storage 'Microsoft.Storage/storageAccounts@2022-05-01' existing = {
+  name: storageAccountName
+  resource blobService 'blobServices' = {
+    name: 'default'
+    resource tokenStore 'containers' = {
+      name: 'token-store'
+    }
+  }
+}
+
+// See https://learn.microsoft.com/en-us/rest/api/storagerp/storage-accounts/list-service-sas
+var sas = storage.listServiceSAS('2022-05-01', {
+  canonicalizedResource: '/blob/${storage.name}/token-store'
+  signedProtocol: 'https'
+  signedResource: 'c'
+  signedPermission: 'rwdl'
+  signedExpiry: '3000-01-01T00:00:00Z'
+}).serviceSasToken
+var sasUrl = 'https://${storage.name}.blob.${environment().suffixes.storage}/token-store?${sas}'
+
+resource app 'Microsoft.App/containerApps@2023-08-01-preview' = {
   name: name
   location: location
   tags: union(tags, {'azd-service-name':  'vite-remix-1' })
@@ -81,6 +120,14 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
         }
       ]
       secrets: union([
+        {
+          name: 'microsoft-provider-authentication-secret'
+          value: msClientSecret
+        }
+        {
+          name: 'token-store-url'
+          value: sasUrl
+        }
       ],
       map(secrets, secret => {
         name: secret.secretRef
@@ -101,6 +148,10 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
               name: 'PORT'
               value: '3000'
             }
+            {
+              name: 'NODE_OPTIONS'
+              value: '--max-http-header-size=65536 --no-node-snapshot'
+            }
           ],
           env,
           map(secrets, secret => {
@@ -116,6 +167,39 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
       scale: {
         minReplicas: 1
         maxReplicas: 10
+      }
+    }
+  }
+  resource authConfigs 'authConfigs' = if (!empty(msTenantId) && !empty(msClientId)) {
+    name: 'current'
+    properties: {
+      identityProviders: {
+        azureActiveDirectory: {
+          registration: {
+            clientId: msClientId
+            clientSecretSettingName: 'microsoft-provider-authentication-secret'
+            openIdIssuer: 'https://sts.windows.net/${msTenantId}/v2.0'
+          }
+          validation: {
+            allowedAudiences: [
+              'api://${msClientId}'
+            ]
+          }
+          login: {
+            loginParameters: ['scope=openid profile email offline_access']
+          }
+        }
+      }
+      platform: {
+        enabled: true
+      }
+      login: {
+        tokenStore: {
+          enabled: true
+          azureBlobStorage: {
+            sasUrlSettingName: 'token-store-url'
+          }
+        }
       }
     }
   }
