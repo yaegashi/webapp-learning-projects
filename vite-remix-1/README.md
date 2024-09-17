@@ -1,40 +1,26 @@
-# Welcome to Remix!
+# vite-remix-1
 
-- 📖 [Remix docs](https://remix.run/docs)
+## Local development server
 
-## Development
-
-Run the dev server:
-
-```shellscript
+```sh
 npm run dev
 ```
 
-## Deployment
-
-First, build your app for production:
+## Local container server
 
 ```sh
-npm run build
+docker compose build
+docker compose up -d
 ```
 
-Then run the app in production mode:
+## Deploy to Azure Container Apps
 
 ```sh
-npm start
+azd auth login
+azd env new foo-env
+azd env set MS_TENANT_ID XXXXXXXX
+azd env set MS_CLIENT_ID XXXXXXXX
+azd env set MS_CLIENT_SECRET XXXXXXXX
+azd provision
+azd deploy
 ```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever css framework you prefer. See the [Vite docs on css](https://vitejs.dev/guide/features.html#css) for more information.
