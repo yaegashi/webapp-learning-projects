@@ -159,8 +159,8 @@ resource app 'Microsoft.App/containerApps@2023-08-01-preview' = {
             secretRef: secret.secretRef
           }))
           resources: {
-            cpu: json('1.0')
-            memory: '2.0Gi'
+            cpu: json('0.25')
+            memory: '0.5Gi'
           }
         }
       ]
@@ -186,7 +186,7 @@ resource app 'Microsoft.App/containerApps@2023-08-01-preview' = {
             ]
           }
           login: {
-            loginParameters: ['scope=openid profile email offline_access']
+            loginParameters: ['scope=openid profile email offline_access User.Read']
           }
         }
       }
