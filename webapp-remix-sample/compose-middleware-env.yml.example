@@ -1,0 +1,23 @@
+WEBSITE_AUTH_ENABLED: true
+WEBSITE_AUTH_DEFAULT_PROVIDER: AzureActiveDirectory
+WEBSITE_AUTH_OPENID_ISSUER: https://sts.windows.net/<AZURE_TENANT_ID>/v2.0
+WEBSITE_AUTH_CLIENT_ID: <AZURE_CLIENT_ID>
+WEBSITE_AUTH_CLIENT_SECRET: <AZURE_CLIENT_SECRET>
+# WEBSITE_AUTH_LOGIN_PARAMS specifies query parameters (separated by commas) to add for the authorization endpoint.
+# See https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow#request-an-authorization-code
+#   response_mode=fragment ... form_post (the default) won't work with recent browsers because Codespaces returns SameSite=Lax cookies for port forwarding connections.
+#   prompt=select_account ... this makes the account selector always appear.
+#   scope=openid profile email ... this specifies the scopes (separated by spaces) to request access to.
+WEBSITE_AUTH_LOGIN_PARAMS: response_mode=fragment,prompt=select_account,scope=openid profile email offline_access User.Read User.ReadBasic.All People.Read
+WEBSITE_AUTH_ALLOWED_AUDIENCES:
+WEBSITE_AUTH_ENCRYPTION_KEY: 0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
+WEBSITE_AUTH_SIGNING_KEY: 0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF
+WEBSITE_AUTH_TOKEN_STORE: true
+WEBSITE_AUTH_UNAUTHENTICATED_ACTION: RedirectToLoginPage
+# WEBSITE_AUTH_PROXY_HEADER_CONVENTION specifies the reverse proxy type: None | Standard | Custom
+#   None ... There is no reverse proxy.
+#   Standard ... Use X-Forwarded-Host and X-Forwarded-Proto headers to construct URLs.
+#   Custom ... Use WEBSITE_AUTH_PROXY_HOST_HEADER and WEBSITE_AUTH_PROXY_PROTO_HEADER settings.
+WEBSITE_AUTH_PROXY_HEADER_CONVENTION: Standard
+WEBSITE_AUTH_PROXY_HOST_HEADER:
+WEBSITE_AUTH_PROXY_PROTO_HEADER:

@@ -1,0 +1,12 @@
+services:
+  middleware:
+    network_mode: host
+    image: mcr.microsoft.com/appsvc/middleware:1.9.1
+    command:
+      - /Host.ListenUrl=http://0.0.0.0:8080
+      - /Host.DestinationHostUrl=http://127.0.0.1:5173
+      - /Host.AutoHealingMiddlewareEnabled=false
+      - /Host.UseFileLogging=true
+      - /Host.UseConsoleLogging=true
+    env_file:
+      - compose-middleware-env.yml
